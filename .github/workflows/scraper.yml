@@ -2,7 +2,7 @@ name: SIASISTEN Scraper Bot
 
 on:
   schedule:
-    - cron: '*/15 * * * *' # Berjalan setiap 15 menit
+    - cron: ' * * * *' # Berjalan setiap 15 menit
   workflow_dispatch:      # Tombol untuk menjalankan manual
 
 jobs:
