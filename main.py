@@ -79,30 +79,29 @@ def send_to_discord(item):
 def main():
     print("Bot Monitoring Lowongan dijalankan...")
     
-    while True:
-        current_data = scrape_genap_vacancies()
-        
-        # Load data lama
-        if os.path.exists(DATA_FILE):
-            with open(DATA_FILE, "r") as f:
-                old_data = json.load(f)
-        else:
-            old_data = []
+    # Jalankan sekali untuk keperluan cron GitHub Actions
+    current_data = scrape_genap_vacancies()
+    
+    # Load data lama
+    if os.path.exists(DATA_FILE):
+        with open(DATA_FILE, "r") as f:
+            old_data = json.load(f)
+    else:
+        old_data = []
 
-        # Bandingkan data (berdasarkan nama matkul atau link unik)
-        old_links = [d['link'] for d in old_data]
+    # Bandingkan data (berdasarkan nama matkul atau link unik)
+    old_links = [d['link'] for d in old_data]
+    
+    for item in current_data:
+        if item['link'] not in old_links and item['status'].lower() == "buka":
+            print(f"Menemukan lowongan baru: {item['matkul']}")
+            send_to_discord(item)
+    
+    # Simpan data terbaru
+    with open(DATA_FILE, "w") as f:
+        json.dump(current_data, f)
         
-        for item in current_data:
-            if item['link'] not in old_links and item['status'].lower() == "buka":
-                print(f"Menemukan lowongan baru: {item['matkul']}")
-                send_to_discord(item)
-        
-        # Simpan data terbaru
-        with open(DATA_FILE, "w") as f:
-            json.dump(current_data, f)
-            
-        print(f"Selesai cek. Menunggu {CHECK_INTERVAL/60} menit...")
-        time.sleep(CHECK_INTERVAL)
+    print("Selesai cek.")
 
 if __name__ == "__main__":
     main()
