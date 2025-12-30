@@ -4,15 +4,14 @@ import time
 import json
 import os
 
-# --- KONFIGURASI ---
-URL = "https://siasisten.cs.ui.ac.id/lowongan/listLowongan/" # Sesuaikan jika URL berbeda
-DISCORD_WEBHOOK_URL = "https://discord.com/api/webhooks/1455376265145094216/uEjKOH81S2ZDbsJ8Gh45FaYc-A3LSx6Dh9Kjod1vWs_GyViMbROBM_Wdyxc0YyA_JxM4"
-# Ambil Cookie 'sessionid' dari Inspect Element > Application > Cookies
+# --- KONFIGURASI (dari environment variables) ---
+URL = "https://siasisten.cs.ui.ac.id/lowongan/listLowongan/"
+DISCORD_WEBHOOK_URL = os.getenv("DISCORD_WEBHOOK_URL", "")
 COOKIES = {
-    'sessionid': 'z6ic44arxbtzexdzh1wlc887hsr77kti'
+    'sessionid': os.getenv("SESSION_ID", "")
 }
 DATA_FILE = "last_vacancies.json"
-CHECK_INTERVAL = 15 * 60  # 15 menit
+CHECK_INTERVAL = 15 * 60  
 
 def scrape_genap_vacancies():
     try:
@@ -22,28 +21,19 @@ def scrape_genap_vacancies():
             return []
 
         soup = BeautifulSoup(response.text, 'html.parser')
-        
-        # Mencari header Genap 2025/2026
         header = soup.find('h4', id='next-term-header')
         if not header:
             return []
-
-        # Table biasanya berada tepat setelah header h4
         table = header.find_next('table')
-        rows = table.find_all('tr')[1:] # Skip header table
-
+        rows = table.find_all('tr')[1:] 
         vacancies = []
         for row in rows:
             cols = row.find_all('td')
             if len(cols) < 5: continue
-
-            # Ekstrak data
             mata_kuliah = cols[1].get_text(strip=True)
             dosen = cols[2].get_text(strip=True)
             status = cols[3].get_text(strip=True)
             jumlah_lowongan = cols[4].get_text(strip=True)
-            
-            # Ambil link pendaftaran jika ada
             link_tag = cols[8].find('a')
             link = "https://siasisten.cs.ui.ac.id" + link_tag['href'] if link_tag else "N/A"
 
@@ -78,18 +68,13 @@ def send_to_discord(item):
 
 def main():
     print("Bot Monitoring Lowongan dijalankan...")
-    
-    # Jalankan sekali untuk keperluan cron GitHub Actions
     current_data = scrape_genap_vacancies()
-    
-    # Load data lama
     if os.path.exists(DATA_FILE):
         with open(DATA_FILE, "r") as f:
             old_data = json.load(f)
     else:
         old_data = []
 
-    # Bandingkan data (berdasarkan nama matkul atau link unik)
     old_links = [d['link'] for d in old_data]
     
     for item in current_data:
@@ -97,7 +82,6 @@ def main():
             print(f"Menemukan lowongan baru: {item['matkul']}")
             send_to_discord(item)
     
-    # Simpan data terbaru
     with open(DATA_FILE, "w") as f:
         json.dump(current_data, f)
         

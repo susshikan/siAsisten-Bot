@@ -2,14 +2,17 @@ name: SIASISTEN Scraper Bot
 
 on:
   schedule:
-    - cron: '* * * * *' # Berjalan setiap 15 menit
-  workflow_dispatch:      # Tombol untuk menjalankan manual
+    - cron: '*/15 * * * *' 
+  push:
+    branches:
+      - main              
+  workflow_dispatch:      
 
 jobs:
   scrape:
     runs-on: ubuntu-latest
     permissions:
-      contents: write     # Izin untuk menyimpan update file JSON ke repo
+      contents: write     
     
     steps:
       - name: Checkout Repository
