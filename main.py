@@ -35,7 +35,7 @@ def scrape_genap_vacancies():
             if len(cols) < 10: 
                 continue
             
-            mata_kuliah = cols[1].get_text(" ", strip=True) # Menggunakan separator spasi untuk <br>
+            mata_kuliah = cols[1].get_text(" ", strip=True) 
             dosen = cols[4].get_text(strip=True)
             status = cols[5].get_text(strip=True)
             jumlah_lowongan = cols[6].get_text(strip=True)
