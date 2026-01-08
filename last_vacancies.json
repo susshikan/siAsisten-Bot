@@ -30,9 +30,9 @@
     {
         "matkul": "CSCE6042780 - 06.00.12.01-2024 Pengelolaan Produk Digital S1 Reguler S1 Reguler",
         "dosen": "p.indahati",
-        "status": "Tutup",
+        "status": "Buka",
         "jumlah": "4 asisten",
-        "link": "N/A"
+        "link": "https://siasisten.cs.ui.ac.id/lowongan/daftarLowongan/2418/"
     },
     {
         "matkul": "CSIE604180 - 06.00.12.01-2020 Manajemen Pengetahuan S1 Reguler S1 Reguler",
@@ -161,18 +161,18 @@
         "link": "https://siasisten.cs.ui.ac.id/lowongan/daftarLowongan/2427/"
     },
     {
-        "matkul": "CSCM601213 - 01.00.12.01-2020 Kalkulus 2",
-        "dosen": "okkyibrohim, heru, aruniyasmin",
-        "status": "Buka",
-        "jumlah": "7 asisten",
-        "link": "https://siasisten.cs.ui.ac.id/lowongan/daftarLowongan/2428/"
-    },
-    {
         "matkul": "CSGE602023 - 01.00.12.01-2024 Pengantar Keamanan Perangkat Lunak S1 S1",
         "dosen": "amril.syalim, ibad.rahadian12, mishbah, rizal.fa",
         "status": "Buka",
         "jumlah": "10 asisten",
         "link": "https://siasisten.cs.ui.ac.id/lowongan/daftarLowongan/2400/"
+    },
+    {
+        "matkul": "CSCM601213 - 01.00.12.01-2020 Kalkulus 2",
+        "dosen": "okkyibrohim, heru, aruniyasmin",
+        "status": "Buka",
+        "jumlah": "10 asisten",
+        "link": "https://siasisten.cs.ui.ac.id/lowongan/daftarLowongan/2428/"
     },
     {
         "matkul": "CSGE603130 - 01.00.12.01-2020 Kecerdasan Artifisial &  Sains Data Dasar",
