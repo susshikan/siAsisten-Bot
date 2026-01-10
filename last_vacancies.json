@@ -105,13 +105,6 @@
         "link": "https://siasisten.cs.ui.ac.id/lowongan/daftarLowongan/2435/"
     },
     {
-        "matkul": "CSGE603291 - 01.00.12.01-2018 Metodologi Penelitian & Penulisan Ilmiah",
-        "dosen": "tusty.nadia12, arawinda, nizar, yova, p.indahati, putu.wuri",
-        "status": "Buka",
-        "jumlah": "15 asisten",
-        "link": "https://siasisten.cs.ui.ac.id/lowongan/daftarLowongan/2436/"
-    },
-    {
         "matkul": "CSIE604160 - 06.00.12.01-2020 E-Dagang",
         "dosen": "thiasunarso, larastri, putu.wuri",
         "status": "Buka",
@@ -145,6 +138,13 @@
         "status": "Buka",
         "jumlah": "4 asisten",
         "link": "https://siasisten.cs.ui.ac.id/lowongan/daftarLowongan/2437/"
+    },
+    {
+        "matkul": "CSIM801031 - 04.00.12.01-2020 Metodologi Penelitian & Penulisan Ilmiah",
+        "dosen": "tusty.nadia12, arawinda, nizar, yova, p.indahati, putu.wuri",
+        "status": "Buka",
+        "jumlah": "15 asisten",
+        "link": "https://siasisten.cs.ui.ac.id/lowongan/daftarLowongan/2436/"
     },
     {
         "matkul": "CSIM602263 - 08.00.12.01-2020 Sistem Informasi Perusahaan dan Akuntansi",
